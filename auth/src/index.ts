@@ -1,5 +1,7 @@
 import express from "express";
 import 'express-async-errors'
+import dotenv from 'dotenv'
+dotenv.config()
 import { json } from "body-parser";
 import mongoose from 'mongoose'
 import { currentUserRouter } from "./routes/current-user";
@@ -42,7 +44,7 @@ const start = async () => {
 
   // console.log(process.env.JWT_KEY)
   try {
-      await mongoose.connect('mongodb+srv://mohamed:secret123@cluster0.y2aft.mongodb.net/Microservices?retryWrites=true&w=majority&appName=Cluster0')
+      await mongoose.connect(process.env.MONGO_URL!)
       console.log('Connected to mongodb')
   }catch(error) {
     console.error(error)
