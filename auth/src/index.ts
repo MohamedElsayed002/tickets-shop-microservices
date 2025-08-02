@@ -1,0 +1,60 @@
+import express from "express";
+import 'express-async-errors'
+import { json } from "body-parser";
+import mongoose from 'mongoose'
+import { currentUserRouter } from "./routes/current-user";
+import { signUpRouter } from "./routes/signup";
+import { signinRouter } from "./routes/signin";
+import { signoutRouter } from "./routes/signout";
+import { errorHandler } from "./middlewares/error-handler";
+import { NotFoundError } from "./errors/not-found-error";
+import cookieSession from 'cookie-session'
+
+
+const app = express();
+app.set('trust proxy', true);
+app.use(json());
+app.use(
+  cookieSession({
+    signed: false,
+    secure: false
+  })
+)
+app.use(currentUserRouter)
+app.use(signUpRouter)
+app.use(signinRouter)
+app.use(signoutRouter)
+app.use(errorHandler)
+
+
+app.all('*', async (req,res,next) => {
+  next(new NotFoundError())
+})
+
+app.use(errorHandler)
+
+const start = async () => {
+
+  // if(!process.env.JWT_KEY) {
+  //   throw new Error('JWT_KEY must be defined')
+  // }
+
+
+  // console.log(process.env.JWT_KEY)
+  try {
+      await mongoose.connect('mongodb+srv://mohamed:secret123@cluster0.y2aft.mongodb.net/Microservices?retryWrites=true&w=majority&appName=Cluster0')
+      console.log('Connected to mongodb')
+  }catch(error) {
+    console.error(error)
+  }
+
+  app.listen(3000, () => {
+  console.log("Listening on port 3000!!");
+});
+
+
+}
+
+start()
+
+
