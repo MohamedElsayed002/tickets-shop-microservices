@@ -11,7 +11,7 @@
     "preset": "ts-jest",
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
-        "./src/test/setup.ts"
+      "./src/test/setup.ts"
     ]
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.96",
     "cookie-session": "^2.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
@@ -33,6 +34,7 @@
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^6.0.3",
     "jest": "^30.0.5",

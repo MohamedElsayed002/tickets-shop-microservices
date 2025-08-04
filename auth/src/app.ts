@@ -11,10 +11,17 @@ import { signoutRouter } from "./routes/signout";
 import { errorHandler } from "./middlewares/error-handler";
 import { NotFoundError } from "./errors/not-found-error";
 import cookieSession from 'cookie-session'
+import cors from 'cors'
 
+// docker build -t moham/client .
+// docker push moham/client 
 
 const app = express();
 app.set('trust proxy', true);
+app.use(cors({
+  origin: 'http://localhost:3000', // frontend origin
+  credentials: true
+}));
 app.use(json());
 app.use(
   cookieSession({
