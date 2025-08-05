@@ -1,8 +1,10 @@
+// import { currentUser } from '@tickets-validation/common'
 import express from 'express'
-import { CurrentUser } from '../middlewares/current-user'
+import { currentUser } from 'tickets-validator'
+// import { CurrentUser } from '../middlewares/current-user'
 const router = express.Router()
 
-router.get('/api/users/current-user', CurrentUser,(req, res) => {
+router.get('/api/users/current-user', currentUser,(req, res) => {
     res.send({currentUser: req.currentUser || null})
 })
 

@@ -8,12 +8,12 @@ import { currentUserRouter } from "./routes/current-user";
 import { signUpRouter } from "./routes/signup";
 import { signinRouter } from "./routes/signin";
 import { signoutRouter } from "./routes/signout";
-import { errorHandler } from "./middlewares/error-handler";
-import { NotFoundError } from "./errors/not-found-error";
+// import { errorHandler } from "./middlewares/error-handler";
 import cookieSession from 'cookie-session'
 import cors from 'cors'
+import { errorHandler , NotFoundError  } from "tickets-validator";
 
-// docker build -t moham/client .
+  // docker build -t moham/client .
 // docker push moham/client 
 
 const app = express();

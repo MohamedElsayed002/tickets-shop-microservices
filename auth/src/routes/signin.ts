@@ -1,11 +1,10 @@
 import express, {Request, Response} from 'express'
 import { body , validationResult} from 'express-validator'
-import { RequestValidationError } from '../errors/request-validation'
-import { validateRequest } from '../middlewares/validate-request'
 import { User } from '../models/user'
-import { BadRequestError } from '../errors/bad-request-error'
 import { Password } from '../services/password'
 import jwt from 'jsonwebtoken'
+import { BadRequestError, RequestValidationError, validateRequest } from 'tickets-validator'
+
 const router = express.Router()
 
 router.post('/api/users/signin',
@@ -18,8 +17,7 @@ router.post('/api/users/signin',
             .notEmpty()
             .withMessage('You must supply a password')
     ],
-        validateRequest
-    ,async (req: Request,res: Response) => {
+    async (req: Request,res: Response) => {
 
         const { email, password } = req.body
 
