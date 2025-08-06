@@ -4,15 +4,13 @@ import dotenv from 'dotenv'
 dotenv.config()
 import { json } from "body-parser";
 import mongoose from 'mongoose'
-import { currentUserRouter } from "./routes/current-user";
-import { signUpRouter } from "./routes/signup";
-import { signinRouter } from "./routes/signin";
-import { signoutRouter } from "./routes/signout";
-// import { errorHandler } from "./middlewares/error-handler";
 import cookieSession from 'cookie-session'
 import cors from 'cors'
-import { errorHandler, NotFoundError } from "@rallycoding/common";
-
+import { createTicketRouter } from "./routes/new";
+import { errorHandler, NotFoundError, currentUser } from "@rallycoding/common";
+import { showTicketRouter } from "./routes/show";
+import { indexTicketRouter } from "./routes";
+import { updateTicketRouter } from "./routes/update";
   // docker build -t moham/client .
 // docker push moham/client 
 
@@ -29,17 +27,17 @@ app.use(
     secure: false
   })
 )
-app.use(currentUserRouter)
-app.use(signUpRouter)
-app.use(signinRouter)
-app.use(signoutRouter)
-app.use(errorHandler)
+app.use(currentUser)
+app.use(createTicketRouter)
+app.use(showTicketRouter)
+app.use(indexTicketRouter)
+app.use(updateTicketRouter)
 
 
 app.all('*', async (req,res,next) => {
   next(new NotFoundError())
 })
 
-app.use(errorHandler)
+// app.use(errorHandler)
 
 export { app }
