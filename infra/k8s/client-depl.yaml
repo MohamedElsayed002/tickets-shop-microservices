@@ -7,14 +7,14 @@ spec:
   selector:
     matchLabels:
       app: client
-    template:
-      metadata:
-        labels:
-          app: client
-      spec:
-        containers:
-          - name: client
-            image: moham/client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: moham/client
 ---
 apiVersion: v1
 kind: Service

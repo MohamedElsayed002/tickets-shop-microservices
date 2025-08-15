@@ -53,3 +53,17 @@ hub.docker.com
 -----------------------------------
 
 
+# Section 17: Cross-Service Data Replication In Action 
+
+- Duplicate the 'tickets' services 
+- Install dependencies
+- Build an image out of the orders service 
+- Create a Kubernetes deployment file 
+- Set up file sync options in the skaffold.yaml file 
+- Setup up routing rules in the ingress service 
+
+
+# Save key 
+
+kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=TOKEN
+kubectl get secrets
