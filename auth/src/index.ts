@@ -10,6 +10,7 @@ const start = async () => {
 
 
   // console.log(process.env.JWT_KEY)
+  console.log('Starting up auth service...')
   try {
       await mongoose.connect(process.env.MONGO_URL!)
       console.log('Connected to mongodb')
