@@ -33,13 +33,13 @@ app.use(currentUserRouter)
 app.use(signUpRouter)
 app.use(signinRouter)
 app.use(signoutRouter)
-app.use(errorHandler)
+// app.use(errorHandler)
 
 
 app.all('*', async (req,res,next) => {
   next(new NotFoundError())
 })
 
-app.use(errorHandler)
+// app.use(errorHandler)
 
 export { app }
